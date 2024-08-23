@@ -4,18 +4,25 @@ import Navbar from './Components/Navbar/Navbar';
 import LandingPage from './Components/Landing_Page/Landingpage';
 import Signup from './Components/Signup/Signup';
 import Login from './Components/Login/Login';
-import InstantConsultation from "./Components/InstantConsultation/InstantConsultation";
+import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
+import Notification from './Components/Notifications/Notifications';
+
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/landingpage" element={<LandingPage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/InstantConsultant" element={<InstantConsultation/>}/>
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Notification>
+          <Routes>
+            <Route path="/landingpage" element={<LandingPage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/instant-consultation" element={<InstantConsultation />} />
+            <Route path="<component_route>" element={<component_name />} /> {/* Replace <component_route> and <component_name> */}
+          </Routes>
+        </Notification>
+      </Router>
+    </div>
   );
 }
 
