@@ -6,6 +6,7 @@ const Navbar = () => {
     const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [, setEmail] = useState(""); // This state is used to store the email address
+    const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage drop-down visibility
 
     const handleClick = () => setClick(!click);
 
@@ -25,6 +26,10 @@ const Navbar = () => {
             }
         }
         window.location.reload();
+    };
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
     };
 
     useEffect(() => { 
@@ -58,9 +63,27 @@ const Navbar = () => {
                     <Link to="/healthblog">Health Blog</Link>
                 </li>
                 <li className="link">
-                    <Link to="/reviews">Reviews</Link>
+                    <Link to="/review">Reviews</Link>
                 </li>
-                {isLoggedIn ? (
+                        <li className="link profile-dropdown">
+                            <span onClick={toggleDropdown} className="profile-link">
+                                Profile <i className="fa fa-caret-down"></i>
+                            </span>
+                            {dropdownOpen && (
+                                <ul className="dropdown-menu">
+                                    <li>
+                                        <Link to="/profile">View Profile</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/settings">Settings</Link>
+                                    </li>
+                                    <li>
+                                        <button onClick={handleLogout}>Logout</button>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>
+               {isLoggedIn ? (
                     <>
                         <li className="link">
                             <button className="btn2" onClick={handleLogout}>
